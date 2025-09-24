@@ -1,0 +1,53 @@
+🚂 COPIA QUESTE VARIABILI ESATTE SU RAILWAY:
+
+=== CONFIGURAZIONE STRAPI ===
+HOST=::
+PORT=1337
+NODE_ENV=production
+STRAPI_DISABLE_UPDATE_NOTIFICATION=true
+STRAPI_TELEMETRY_DISABLED=true
+BROWSER=false
+URL=https://${{RAILWAY_PUBLIC_DOMAIN}}
+
+=== SECURITY KEYS (MANTIENI QUELLI CHE HAI) ===
+ADMIN_JWT_SECRET=dai2sao92uz7w81duhua2sid5i00do94
+API_TOKEN_SALT=uma03wuzajejkukaf56nr8sj5bjdfh08
+APP_KEYS=idl3wxc1lvvzkbb00121worcj0o14o4o
+JWT_SECRET=p83d3ol5xy0j9xmjvoxonc8kgkeoubv3
+TRANSFER_TOKEN_SALT=cv5p0om97t1xpzwq0nkaax1jzkl12rgf
+
+=== DATABASE CONFIGURATION (CRITICO!) ===
+DATABASE_CLIENT=postgres
+
+# Prova PRIMA con variabili separate (più affidabile)
+DATABASE_HOST=${{Postgres.PGHOST}}
+DATABASE_PORT=5432
+DATABASE_NAME=${{Postgres.POSTGRES_DB}}
+DATABASE_USERNAME=${{Postgres.POSTGRES_USER}}
+DATABASE_PASSWORD=${{Postgres.POSTGRES_PASSWORD}}
+DATABASE_SSL=true
+
+# Fallback con DATABASE_URL (se le variabili separate non funzionano)
+DATABASE_URL=${{Postgres.DATABASE_URL}}
+
+=== VARIABILI POSTGRESQL NATIVE (Railway le gestisce automaticamente) ===
+POSTGRES_DB=${{Postgres.POSTGRES_DB}}
+POSTGRES_USER=${{Postgres.POSTGRES_USER}}
+POSTGRES_PASSWORD=${{Postgres.POSTGRES_PASSWORD}}
+PGHOST=${{Postgres.PGHOST}}
+PGPORT=5432
+PGUSER=${{Postgres.POSTGRES_USER}}
+PGPASSWORD=${{Postgres.POSTGRES_PASSWORD}}
+PGDATABASE=${{Postgres.POSTGRES_DB}}
+
+⚠️ IMPORTANTE:
+- Assicurati che il servizio PostgreSQL sia collegato al progetto
+- Railway risolverà automaticamente le variabili ${{POSTGRES_*}}
+- La variabile DATABASE_CLIENT=postgres è FONDAMENTALE!
+
+🔍 DOPO IL DEPLOY, controlla i logs per:
+✅ "🔍 Database client: postgres"
+✅ "🚂 Railway DATABASE_URL detected"
+✅ "🐘 Using PostgreSQL configuration"
+
+❌ Se vedi "💾 Using SQLite configuration" = problema con DATABASE_CLIENT!

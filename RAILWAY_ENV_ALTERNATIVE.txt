@@ -1,0 +1,45 @@
+🚂 CONFIGURAZIONE ALTERNATIVA RAILWAY (Prova questa se la prima non funziona)
+
+=== OPZIONE 1: Usa le variabili PostgreSQL native ===
+DATABASE_CLIENT=postgres
+DATABASE_HOST=${{Postgres.PGHOST}}
+DATABASE_PORT=${{Postgres.PGPORT}}
+DATABASE_NAME=${{Postgres.PGDATABASE}}
+DATABASE_USERNAME=${{Postgres.PGUSER}}
+DATABASE_PASSWORD=${{Postgres.PGPASSWORD}}
+DATABASE_SSL=true
+
+=== OPZIONE 2: Usa solo DATABASE_URL (se PGHOST ha problemi IPv6) ===
+DATABASE_CLIENT=postgres
+DATABASE_URL=${{Postgres.DATABASE_URL}}
+DATABASE_SSL=true
+
+=== OPZIONE 3: Forza IPv4 (se il problema è IPv6) ===
+DATABASE_CLIENT=postgres
+DATABASE_HOST=${{Postgres.PGHOST}}
+DATABASE_PORT=5432
+DATABASE_NAME=${{Postgres.POSTGRES_DB}}
+DATABASE_USERNAME=${{Postgres.POSTGRES_USER}}
+DATABASE_PASSWORD=${{Postgres.POSTGRES_PASSWORD}}
+DATABASE_SSL=true
+# Aggiungi questa per forzare IPv4
+DATABASE_OPTIONS={"family":4}
+
+=== DEBUG: Aggiungi queste per vedere cosa succede ===
+DATABASE_DEBUG=true
+DEBUG=knex:*
+
+⚠️ PROBLEMA IDENTIFICATO:
+L'errore "connect ENETUNREACH fd12:4e6:ef9:0:1000:5e:3a17:62cd:5432" 
+indica che Railway sta cercando di connettersi via IPv6 ma non riesce.
+
+🔧 SOLUZIONI DA PROVARE:
+1. Usa ${{Postgres.PGHOST}} invece di ${{RAILWAY_PRIVATE_DOMAIN}}
+2. Usa solo DATABASE_URL se le variabili separate non funzionano
+3. Aggiungi DATABASE_DEBUG=true per vedere più dettagli
+4. Controlla che il servizio PostgreSQL sia nello stesso progetto Railway
+
+🔍 NEI LOGS CERCA:
+- Il valore effettivo di DATABASE_HOST
+- Se sta usando IPv4 o IPv6
+- Messaggi di debug della connessione PostgreSQL
