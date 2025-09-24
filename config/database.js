@@ -31,7 +31,12 @@ module.exports = ({ env }) => {
               user: env('DATABASE_USERNAME'),
               password: env('DATABASE_PASSWORD'),
               ssl: env.bool('DATABASE_SSL', true)
-                ? { rejectUnauthorized: false }
+                ? { 
+                    rejectUnauthorized: false,
+                    ca: false,
+                    key: false,
+                    cert: false
+                  }
                 : false,
             },
             pool: { 
@@ -58,7 +63,12 @@ module.exports = ({ env }) => {
             connection: {
               connectionString: env('DATABASE_URL'),
               ssl: env.bool('DATABASE_SSL', true)
-                ? { rejectUnauthorized: false }
+                ? { 
+                    rejectUnauthorized: false,
+                    ca: false,
+                    key: false,
+                    cert: false
+                  }
                 : false,
             },
             pool: { 
