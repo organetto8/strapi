@@ -23,8 +23,8 @@
         }
       }
     },
-    "subtitle": {
-      "type": "string",
+    "info": {
+      "type": "text",
       "pluginOptions": {
         "i18n": {
           "localized": true
