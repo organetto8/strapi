@@ -1,7 +1,4 @@
-// config/database.js
-module.exports = ({ env }) => {
-  
-
+export default ({ env }) => {
   // Se c'è DATABASE_URL (Railway prod)
   if (env('DATABASE_URL')) {
     return {
