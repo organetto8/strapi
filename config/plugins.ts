@@ -13,8 +13,12 @@ export default ({ env }) => ({
         api_secret: env("CLOUDINARY_SECRET"),
       },
       actionOptions: {
-        upload: {},
-        uploadStream: {},
+        upload: {
+          timeout: 120000,
+        },
+        uploadStream: {
+          timeout: 120000,
+        },
         delete: {},
       },
     },
