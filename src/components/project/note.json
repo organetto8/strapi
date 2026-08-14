@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_project_notes",
+  "info": {
+    "displayName": "Note",
+    "icon": "file",
+    "description": "Testo in markdown mostrato nel finto Notes del Mac e nella scheda info dell'iPhone"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "body": {
+      "type": "richtext"
+    }
+  }
+}

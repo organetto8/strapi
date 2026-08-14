@@ -42,6 +42,36 @@
       "allowedTypes": [
         "images"
       ]
+    },
+    "notes": {
+      "type": "component",
+      "repeatable": true,
+      "component": "project.note",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "order": {
+      "type": "integer",
+      "default": 0,
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    },
+    "group": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::project-group.project-group",
+      "inversedBy": "projects",
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
     }
   }
 }

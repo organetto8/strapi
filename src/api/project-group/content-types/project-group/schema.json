@@ -1,0 +1,49 @@
+{
+  "kind": "collectionType",
+  "collectionName": "project_groups",
+  "info": {
+    "singularName": "project-group",
+    "pluralName": "project-groups",
+    "displayName": "Project Group",
+    "description": "Raggruppa piu' progetti sotto un unico nome (es. Versailles 1, Versailles 2)"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "order": {
+      "type": "integer",
+      "default": 0,
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    },
+    "projects": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::project.project",
+      "mappedBy": "group",
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    }
+  }
+}
